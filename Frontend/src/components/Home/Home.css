@@ -1,0 +1,45 @@
+.restaurant-list{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  padding-left:40px;
+  padding-right: 40px;
+}
+.slideshow{
+  height: 350px;
+  width: 100%;
+  background-color: rgb(1, 5, 35);
+}
+.body-container{
+width: 100%;
+padding:20px
+}
+
+.Search{
+  padding: 10px;
+}
+.carouselImg:hover{
+  box-shadow: 0 10px 8px rgba(15, 15, 15, 0.36);
+  transform: scale(1.05);
+  cursor: pointer;
+  transition: 0.5s all ease-in-out;
+}
+.slideshow-container {
+  display: flex;
+  flex-wrap:nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  overflow:scroll;
+}
+
+.item {
+  width: 25%; /* Display four items at a time */
+  transition: transform 0.5s ease-in-out;
+}
+
+.carouselImg {
+  width: 100%;
+  height: auto;
+}
+
