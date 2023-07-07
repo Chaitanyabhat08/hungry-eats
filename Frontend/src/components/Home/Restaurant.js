@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import React,{useState} from "react";
 import {
   swiggy_menu_api_URL,
@@ -30,7 +30,6 @@ const Restaurant = () => {
     RESTAURANT_ADDRESS_KEY,
     RESTAURANT_LICENCE_KEY
   );
-  console.log(resLicenceInfo, resAddressInfo)
   const [searchInputVisible, setSearchInputVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
   const filteredMenuItems = menuItems.filter((item) =>
@@ -43,7 +42,6 @@ const Restaurant = () => {
     result[item.category].push(item);
     return result;
   }, {});
-  console.log(resLicenceInfo);
   const [expandedHeaders, setExpandedHeaders] = useState(
     Object.fromEntries(Object.entries(groupedMenuItems).map(([header]) => [header, true]))
   );
@@ -54,7 +52,7 @@ const Restaurant = () => {
   return !restaurant ? (
     <MenuShimmer />
   ) : (
-    <div className="restaurant-main">
+    <div className="restaurant-main" style={{border: '1px solid gray'}}>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div style={{marginBottom:'20px', display:'flex',justifyContent:'space-between'}}>
             <p className="restaurant-tags">{`Home/${restaurant.city}/${restaurant.areaName}`}</p>
@@ -84,22 +82,33 @@ const Restaurant = () => {
               alt={restaurant?.name}
             />
             <div style={{ display: 'flex', flexDirection: 'column', padding: '20px' }}>
-                <h3>{restaurant.name}</h3>
+                <h3>{restaurant.name}<span>
+                  {restaurant?.veg!==undefined && restaurant?.veg ? (
+                    <i className="fa-solid fa-leaf" style={{ color: '#1fd62b' }}></i>
+                  ) : (
+                      <i class="fa-solid fa-drumstick-bite" style={{ "color": "#b42313"}}></i>
+                  )}
+                </span></h3>
+               
                 <p className="restaurant-tags"><i class="fa-solid fa-location-dot" style={{margin:'5px'}}></i>{restaurant.locality + ", "+ restaurant.areaName}</p>
                 <p className="restaurant-tags"><i class="fa-solid fa-utensils" style={{ margin: '5px' }}></i>{restaurant?.cuisines?.join(", ")}</p>
                 <p className="restaurant-tags"><i class="fa-solid fa-route" style={{ margin: '5px' }}></i>{Number(restaurant.sla.lastMileTravel / 1000).toFixed(2)} km</p>
             </div>
           </div>
-          <div className="ratingBox" style={{ border: '1px solid lightgray', borderRadius: '5px', width: '100px', height: '90px', right: 0, alignItems: 'center', textAlign:'center' }}>
-              <p style={{fontWeight:700}}>{restaurant?.avgRating > 4 ?
+            <div className="ratingBox" style={{ border: '1px solid lightgray', borderRadius: '5px', width: '100px', height: '90px', right: 0, alignItems: 'center', textAlign: 'center' }}>
+              <div>
+              <p style={{fontWeight:700}}>{restaurant?.avgRating >= 4 ?
                 <StarsTwoToneIcon style={{ color: 'green' }} /> :
                   restaurant?.avgRating > 3 ?
                     <StarsTwoToneIcon style={{ color: 'orange' }} />
                     : <StarsTwoToneIcon style={{ color: 'red' }} />
                 
-              }{restaurant?.avgRating}</p>
-            <hr />
-              <p className="restaurant-tags">{restaurant.totalRatingsString}</p>
+                }{restaurant?.avgRating}</p>
+              </div>
+              <hr />
+              <div>
+                <p className="restaurant-tags">{restaurant.totalRatingsString}</p>
+              </div>
           </div>
           </div>     
       </div>
@@ -107,17 +116,16 @@ const Restaurant = () => {
 
         <p><CurrencyRupeeIcon style={{ border: '2px solid gray', borderRadius: '50%' }} /><span style={{ margin: '5px', marginBottom: '30px' }}>{restaurant.costForTwoMessage} </span></p>
 
-        <div className='discountBar' style={{padding:'10px', width:'100%'}}>
-          <p style={{color:'green'}}>Best offer : {restaurant.aggregatedDiscountInfo?.header}</p>
-          <div style={{ display: 'flex', overflow:'scroll', padding:'10px'}}>
-            {offers?.map((discount) => (
-              <div className="discountCard" style={{ border: '0px light green', boxShadow: 'green 0px 2px 2px 0px',width: '250px', height: '75px', alignItems: 'center', justifyContent: 'fill', margin:'10px',padding:'10px',borderRadius:'20px' }}>
-                <p className="restaurant-tags" key={discount.info.offerIds[0]} style={{ fontWeight: 500, color: 'darkgreen' }}><img style={{height:'25px', width:'25px'}} src={discountImg} />{discount.info.header}<br/> { discount.info.couponCode}</p>
-              </div>
-              )
-            )} 
+          <div className='discountBar' style={{ padding: '10px', width: '100%' }}>
+            <p style={{ color: 'green' }}>Best offer : {restaurant.aggregatedDiscountInfo?.header}</p>
+            <div style={{ display: 'flex', width: '100%', overflow: 'scroll' }}>
+              {offers?.map((discount) => (
+                <div className="discountCard" style={{ border: '0px light green', boxShadow: 'green 0px 2px 2px 0px', width: '240px', height: '80px', alignItems: 'center', justifyContent: 'fill', margin: '10px', padding: '10px', borderRadius: '20px', flexShrink: 0 }}>
+                  <parseFloat key={discount.info.offerIds[0]} style={{ fontWeight: 400, color: 'darkgreen' }}><img style={{ height: '25px', width: '25px' }} src={discountImg} />{discount.info.header}<br /> {discount.info.couponCode}</parseFloat>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
         <hr style={{ borderTop: "dotted 1px gray" }} />
         <div className='menuItems'>
           {Object.entries(groupedMenuItems).map(([header, items]) => (
@@ -177,7 +185,7 @@ const Restaurant = () => {
           <hr />
           <div>
             <p className="restaurant-tags">{resAddressInfo[0]?.name}</p>
-            <p className="restaurant-tags" style={{overflowWrap:'break-word'}}>{resAddressInfo[0]?.completeAddress}</p>
+            <p className="restaurant-tags">{resAddressInfo[0]?.completeAddress}</p>
           </div>
         </div>
     </div>
