@@ -101,8 +101,8 @@ const Restaurant = () => {
                 <StarsTwoToneIcon style={{ color: 'green' }} /> :
                   restaurant?.avgRating > 3 ?
                     <StarsTwoToneIcon style={{ color: 'orange' }} />
-                    : <StarsTwoToneIcon style={{ color: 'red' }} />
-                
+                    :
+                    <StarsTwoToneIcon style={{ color: 'red' }} />
                 }{restaurant?.avgRating}</p>
               </div>
               <hr />
@@ -134,7 +134,7 @@ const Restaurant = () => {
                 ...prevState,
                 [header]: !prevState[header]
               }))}>
-                <div style={{ display: 'flex', height: '60px', width: '100%', backgroundColor: 'white', border: '0px solid gray', borderRadius: '8px', padding: '10px', alignItems: 'center', boxShadow:'rgb(172, 164, 164) 0px 2px 2px 0px'}}>
+                <div style={{ display: 'flex', height: '70px', width: '100%', backgroundColor: 'white', border: '0px solid gray', borderRadius: '8px', padding: '10px', alignItems: 'center', boxShadow:'rgb(172, 164, 164) 0px 2px 2px 0px', transition:'ease-in 0.3s'}}>
                   <div style={{ flex: 1,fontFamily:'-moz-initial', fontWeight:'bold' }}>{header}</div>
                   <span style={{ right:0 }}>{expandedHeaders[header] ? '-' : '+'}</span>
                 </div>

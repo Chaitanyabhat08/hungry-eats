@@ -7,12 +7,14 @@ import Home from './components/Home/Home';
 import Error from './utils/Error';
 import About from './components/Home/AboutUs';
 import Restaurant from './components/Home/Restaurant';
+import Footer from './components/layout/Footer';
 
 const AppLayout = () => {
   return (
     <div className="app">
         <Header />
         <Outlet />
+        <Footer />
     </div>
   )
 }

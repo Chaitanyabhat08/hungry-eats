@@ -25,6 +25,7 @@ const Home = () => {
     try {
       const data = await fetch(swiggy_api_URL);
       const json = await data.json();
+      console.log('Main Data', json);;
       setSlideshowElements(json?.data?.cards[0]?.data?.data?.cards)
       // updated state variable restaurants with Swiggy API data
       setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);

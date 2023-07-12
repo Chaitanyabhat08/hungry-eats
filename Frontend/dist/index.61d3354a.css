@@ -1243,4 +1243,22 @@ a {
   padding: 4px 25px;
 }
 
+.main-footer {
+  height: "300px";
+  padding: "30px";
+  background-color: #010523;
+  width: 100%;
+}
+
+.contentheaders {
+  color: silver;
+  font-family: Courier New, Courier, monospace;
+}
+
+li {
+  color: #e8f6f1;
+  margin: "3px";
+  list-style-type: none;
+}
+
 /*# sourceMappingURL=index.61d3354a.css.map */

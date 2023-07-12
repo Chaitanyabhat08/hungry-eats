@@ -1,0 +1,15 @@
+.main-footer{
+  height:'300px';
+  width: 100%;
+  background-color: rgb(1, 5, 35);
+  padding:'30px';
+}
+.contentheaders{
+  color:silver;
+  font-family: 'Courier New', Courier, monospace;
+}
+li{
+  list-style-type: none;
+  color:rgb(232, 246, 241);
+  margin:'3px';
+}
