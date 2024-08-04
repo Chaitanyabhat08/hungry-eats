@@ -35,6 +35,7 @@ const Restaurant = () => {
   const filteredMenuItems = menuItems.filter((item) =>
     item.name.toLowerCase().includes(searchText.toLowerCase())
   );
+  console.log(restaurant);
   const groupedMenuItems = filteredMenuItems.reduce((result, item) => {
     if (!result[item.category]) {
       result[item.category] = [];

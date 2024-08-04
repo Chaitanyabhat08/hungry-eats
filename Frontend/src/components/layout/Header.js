@@ -53,10 +53,8 @@ const Header = () => {
             </div>
           </Link>
           <div>
-            <Link to="/">
-           <img src='https://media.istockphoto.com/id/1316420668/vector/user-icon-human-person-symbol-social-profile-icon-avatar-login-sign-web-user-symbol.jpg?s=612x612&w=0&k=20&c=AhqW2ssX8EeI2IYFm6-ASQ7rfeBWfrFFV4E87SaFhJE=' style={{
-              width: '55px', height:'55px',margin:'10px', borderRadius:'50%'
-              }} />
+            <Link to="/signin">
+           <button type="button" style={{width: '55px', height:'55px',margin:'10px', borderRadius:'50%',color:'gray'}}>Sign In</button>
             </Link>
           </div>
         </div>

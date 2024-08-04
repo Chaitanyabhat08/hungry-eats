@@ -8,6 +8,7 @@ import Error from './utils/Error';
 import About from './components/Home/AboutUs';
 import Restaurant from './components/Home/Restaurant';
 import Footer from './components/layout/Footer';
+import LoginSignup from './components/User/LoginSIgnup';
 
 const AppLayout = () => {
   return (
@@ -34,9 +35,13 @@ const appRouter = createBrowserRouter([
       }, {
         path: '/restaurant/:resId',
         element:<Restaurant/>
-      }
+      },
     ],
     errorElement:<Error/>
+  }, 
+  {
+    path: '/signin',
+    element: <LoginSignup />
   }
 ])
 
